@@ -1,0 +1,52 @@
+.header {
+  background-color: #ffae00;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header_logo {
+  width: 100px;
+  margin: 0 20px;
+}
+.header_search {
+  display: flex;
+  margin-left: 20px;
+  height: 35px;
+
+  flex: 1;
+}
+.header_searchInput {
+  padding: 20px;
+  border: none;
+  width: 70%;
+}
+.header_searchIcon {
+  color: orange;
+  padding: 5px;
+  height: 22px !important;
+}
+.header_link {
+  color: white;
+  text-decoration: none;
+}
+.header_option {
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 80px;
+  margin-right: 50px;
+}
+.header_optionLineOne {
+  font-size: 15px;
+}
+.header_optionLineTwo {
+  font-size: 19px;
+  font-weight: 800;
+}
+.header-nav {
+  display: flex;
+  text-align: left;
+  justify-content: space-evenly;
+}
