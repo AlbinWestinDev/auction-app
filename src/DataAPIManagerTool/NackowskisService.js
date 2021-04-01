@@ -1,17 +1,17 @@
 import axios from "axios";
 
 const BASE_URL = "http://nackowskis.azurewebsites.net/api";
-const AUCTION_GROUP_ID = 2310;
+const GROUP_ID = 2310;
 
 //Returnerar en array med alla objekt
 export const getAll = () => {
-  const url = `${BASE_URL}/Auktion/${AUCTION_GROUP_ID}`;
+  const url = `${BASE_URL}/Auktion/${GROUP_ID}`;
   return axios.get(url).then((response) => response.data);
 };
 
 //Returnerar ett objekt
 export const getById = (id) => {
-  const url = `${BASE_URL}/Auktion/${AUCTION_GROUP_ID}/${id}`;
+  const url = `${BASE_URL}/Auktion/${GROUP_ID}/${id}`;
   return axios.get(url).then((response) => response.data);
 };
 
@@ -26,19 +26,25 @@ export const getByTitle = async (title) => {
 
 // Tar emot ett auktionsobjekt och postar.
 export const insertAuction = (obj) => {
-  const url = `${BASE_URL}/Auktion/${AUCTION_GROUP_ID}`;
+  const url = `${BASE_URL}/Auktion/${GROUP_ID}`;
   axios.post(url, obj);
 };
 
 // Tar emot ett budobjekt och postar.
 export const insertBid = (obj) => {
-  const url = `${BASE_URL}/Auktion/${AUCTION_GROUP_ID}`;
+  const url = `${BASE_URL}/Auktion/${GROUP_ID}`;
   axios.post(url, obj);
 };
 
 //Tar emot ett komplett auktionsobjekt, kollar på AuktionId och byter ut motsvarande objekt i databasen.
 export const updateAuction = (obj) => {
-  const url = `${BASE_URL}/Auktion/${AUCTION_GROUP_ID}/${obj.AuktionID}`;
+  const url = `${BASE_URL}/Auktion/${GROUP_ID}/${obj.AuktionID}`;
 
-  axios.put(url, obj).then((response) => console.log(response.status));
+  axios.put(url, obj);
+};
+
+export const deleteById = (id) => {
+  const url = `${BASE_URL}/Auktion/${GROUP_ID}/${id}`;
+
+  axios.delete(url);
 };
