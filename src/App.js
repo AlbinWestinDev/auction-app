@@ -29,7 +29,8 @@ function App() {
     return () => {
       unsubsribe();
     };
-  });
+  }, []);
+
   console.log("user>>", loggedinuser);
 
   return (
