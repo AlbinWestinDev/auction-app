@@ -12,8 +12,9 @@ import useStyles from './styles';
 
 export default function BiddingHistory(props) {
   const classes = useStyles();
+  const { bidData } = props;
 
-  return props.bidData.length > 0 ? (
+  return bidData.length > 0 ? (
     <TableContainer className={classes.root}>
       <Table className={classes.table} size="small" aria-label="a dense table">
         <TableHead>
@@ -24,8 +25,8 @@ export default function BiddingHistory(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.bidData
-            .slice(0)
+          {bidData
+            .slice(Math.max(bidData.length - 5, 1))
             .reverse()
             .map((row) => (
               <TableRow hover>

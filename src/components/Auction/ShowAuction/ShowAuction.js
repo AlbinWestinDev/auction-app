@@ -216,10 +216,14 @@ export default function ShowAuction(props) {
               <Grid container>
                 <Grid item lg={12}>
                   <Typography variant="h5">Budhistorik</Typography>
+                  <Typography variant="subtitle2">
+                    Visar endast de 5 senaste buden
+                  </Typography>
                 </Grid>
                 <Grid item lg={12}>
                   <BiddingHistory bidData={bidData} />
                 </Grid>
+                <Grid item lg={12}></Grid>
               </Grid>
             </Paper>
           </Grid>
