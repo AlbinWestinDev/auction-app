@@ -26,6 +26,14 @@ export const getByTitle = async (title) => {
   });
 };
 
+//Returnerar en lista med aktuella auktioner (där slutdatum ej gått ut)
+export const getUnexpiredAuctions = async () => {
+  const allAuctions = await getAll();
+  return allAuctions.filter((auc) => {
+  return new Date(auc.SlutDatum) > new Date();
+  })
+};
+
 // Tar emot ett auktionsobjekt och postar.
 export const insertAuction = (obj) => {
   const url = `${BASE_URL}/Auktion/${GROUP_ID}`;
