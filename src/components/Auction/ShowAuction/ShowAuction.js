@@ -22,9 +22,7 @@ import { useStateValue } from '../../StateProvider';
 
 export default function ShowAuction(props) {
   const [auctionData, setAuctionData] = useState();
-  const [bidData, setBidData] = useState([
-    { BudID: 0, Summa: 0, AuktionID: 0, Budgivare: '' },
-  ]);
+  const [bidData, setBidData] = useState([{}]);
   const [highestBid, setHighestBid] = useState();
   const { id } = props.match.params;
   const [{ loggedinuser }, dispatch] = useStateValue();
@@ -32,7 +30,8 @@ export default function ShowAuction(props) {
   const [bidAmount, setBidAmount] = useState();
   const [bidColor, setBidColor] = useState('primary');
   const [bidIsMade, setBidIsMade] = useState(false);
-  const [textFieldError, setTextFieldError] = useState(false);
+  const [isTextFieldError, setIsTextFieldError] = useState(false);
+  const [textFieldErrorMsg, setTextFieldErrorMsg] = useState('');
 
   const fetchAuctionData = async (id) => {
     const fetchedAuction = await getById(id);
@@ -61,23 +60,30 @@ export default function ShowAuction(props) {
     console.log('highestBid', highestBid);
     if (bidAmount > highestBid) {
       if (bidAmount > auctionData.Utropspris) {
-        const randomBidId = Math.floor(Math.random() * 10000);
-        const bidObj = new BidModel(
-          randomBidId,
-          bidAmount,
-          auctionData.AuktionID,
-          loggedinuser.email
-        );
-        setBidData(bidData.concat(bidObj));
-        setBidIsMade(true);
-        setHighestBid(bidAmount);
-        handleInsertBid(bidObj);
-        document.getElementById('filled-basic').value = '';
+        if (loggedinuser.email != bidData[bidData.length - 1].Budgivare) {
+          const randomBidId = Math.floor(Math.random() * 10000);
+          const bidObj = new BidModel(
+            randomBidId,
+            bidAmount,
+            auctionData.AuktionID,
+            loggedinuser.email
+          );
+          setBidData(bidData.concat(bidObj));
+          setBidIsMade(true);
+          setHighestBid(bidAmount);
+          handleInsertBid(bidObj);
+          document.getElementById('filled-basic').value = '';
+        } else {
+          setIsTextFieldError(true);
+          setTextFieldErrorMsg('Du leder redan budgivningen');
+        }
       } else {
-        setTextFieldError(true);
+        setIsTextFieldError(true);
+        setTextFieldErrorMsg('Budet måste vara högre än utropspriset');
       }
     } else {
-      setTextFieldError(true);
+      setIsTextFieldError(true);
+      setTextFieldErrorMsg('Budet måste vara högre än det ledande budet');
     }
   };
 
@@ -167,22 +173,21 @@ export default function ShowAuction(props) {
                         <Grid container>
                           <Grid item lg={6}>
                             <TextField
-                              error={textFieldError}
+                              error={isTextFieldError}
                               id="filled-basic"
                               variant="filled"
                               label="kr"
                               type="number"
                               helperText="Kom ihåg att alla bud är bindande"
                               onChange={(e) => {
-                                setTextFieldError(false);
+                                setIsTextFieldError(false);
                                 setBidAmount(e.target.value);
                               }}
                             />
 
-                            {textFieldError ? (
+                            {isTextFieldError ? (
                               <Typography color="error">
-                                Budet måste vara högre än utropspris och ledande
-                                bud
+                                {textFieldErrorMsg}
                               </Typography>
                             ) : (
                               <> </>

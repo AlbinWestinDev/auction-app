@@ -26,7 +26,8 @@ export default function BiddingHistory(props) {
         </TableHead>
         <TableBody>
           {bidData
-            .slice(Math.max(bidData.length - 5, 1))
+            // .slice(0)
+            .slice(Math.max(bidData.length - 5, 0))
             .reverse()
             .map((row) => (
               <TableRow hover>
