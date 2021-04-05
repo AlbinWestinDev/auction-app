@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Login from "./components/Login";
 import Home from "./components/Home";
+import AuctionList from './components/Auction/AuctionList';
 import { auth } from "./firebase";
 
 import { useStateValue } from "./components/StateProvider";
@@ -32,7 +33,7 @@ function App() {
   }, []);
 
   console.log("user>>", loggedinuser);
-
+  
   return (
     <Router>
       <div className="App">
@@ -46,6 +47,7 @@ function App() {
           <Route path="/">
             <Header />
             <Home />
+            <AuctionList />
           </Route>
         </Switch>
       </div>
