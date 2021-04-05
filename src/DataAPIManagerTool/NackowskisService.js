@@ -1,9 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
-const BASE_URL = "http://nackowskis.azurewebsites.net/api";
+const BASE_URL = 'http://nackowskis.azurewebsites.net/api';
 const GROUP_ID = 2310;
-
-//GET BIDs BY AuctionID måste fixas
 
 //Returnerar en array med alla objekt
 export const getAll = () => {
@@ -30,14 +28,14 @@ export const getByTitle = async (title) => {
 export const getUnexpiredAuctions = async () => {
   const allAuctions = await getAll();
   return allAuctions.filter((auc) => {
-  return new Date(auc.SlutDatum) > new Date();
-  })
+    return new Date(auc.SlutDatum) > new Date();
+  });
 };
 
 // Tar emot ett auktionsobjekt och postar.
 export const insertAuction = (obj) => {
   const url = `${BASE_URL}/Auktion/${GROUP_ID}`;
-  axios.post(url, obj);
+  return axios.post(url, obj).then((response) => response.data);
 };
 
 // Tar emot ett budobjekt och postar.

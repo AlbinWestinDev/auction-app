@@ -1,12 +1,12 @@
 //Malin
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   getAll,
   getUnexpiredAuctions,
-} from "../../DataAPIManagerTool/NackowskisService";
-import AuctionListItem from "./AuctionListItem";
-import "./AuctionListStyle.css";
+} from '../../DataAPIManagerTool/NackowskisService';
+import AuctionListItem from './AuctionListItem';
+import './AuctionListStyle.css';
 
 const AuctionList = () => {
   const [auctions, setAuctions] = useState([]);

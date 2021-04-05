@@ -47,11 +47,6 @@ function Header() {
             <span className="header_optionLineTwo"> Auktioner</span>
           </div>
         </Link>
-        <Link to="/details" className="header_link">
-          <div className="header_option">
-            <span className="header_optionLineOne"> Se detaljer</span>
-          </div>
-        </Link>
       </div>
     </nav>
   );
