@@ -3,6 +3,8 @@ import axios from "axios";
 const BASE_URL = "http://nackowskis.azurewebsites.net/api";
 const GROUP_ID = 2310;
 
+//GET BIDs BY AuctionID måste fixas
+
 //Returnerar en array med alla objekt
 export const getAll = () => {
   const url = `${BASE_URL}/Auktion/${GROUP_ID}`;
@@ -32,7 +34,7 @@ export const insertAuction = (obj) => {
 
 // Tar emot ett budobjekt och postar.
 export const insertBid = (obj) => {
-  const url = `${BASE_URL}/Auktion/${GROUP_ID}`;
+  const url = `${BASE_URL}/Bud/${GROUP_ID}`;
   axios.post(url, obj);
 };
 
@@ -47,4 +49,9 @@ export const deleteById = (id) => {
   const url = `${BASE_URL}/Auktion/${GROUP_ID}/${id}`;
 
   axios.delete(url);
+};
+
+export const getBidByAuctionId = (id) => {
+  const url = `${BASE_URL}/Bud/${GROUP_ID}/${id}`;
+  return axios.get(url).then((response) => response.data);
 };

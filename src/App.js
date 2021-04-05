@@ -7,6 +7,7 @@ import { auth } from "./firebase";
 
 import { useStateValue } from "./components/StateProvider";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ShowAuction from "./components/Auction/ShowAuction/ShowAuction";
 
 function App() {
   const [{ loggedinuser }, dispatch] = useStateValue();
@@ -37,10 +38,15 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
+          <Route path="/details">
+            <Header />
+            <ShowAuction />
+          </Route>
           <Route path="/auction">
             <Header />
           </Route>
           <Route path="/login">
+            <Header />
             <Login />
           </Route>
           <Route path="/">
