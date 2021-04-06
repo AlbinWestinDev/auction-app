@@ -48,7 +48,9 @@ export const insertBid = (obj) => {
 export const updateAuction = (obj) => {
   const url = `${BASE_URL}/Auktion/${GROUP_ID}/${obj.AuktionID}`;
 
-  axios.put(url, obj);
+  return axios.put(url, obj).then((response) => {
+    console.log('axios put', response);
+  });
 };
 
 export const deleteById = (id) => {

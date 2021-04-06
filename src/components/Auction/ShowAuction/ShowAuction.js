@@ -12,6 +12,7 @@ import {
   getById,
   insertBid,
   getBidByAuctionId,
+  deleteById,
 } from '../../../DataAPIManagerTool/NackowskisService';
 import BidModel from '../../_model/BidModel';
 import BiddingHistory from './BiddingHistory/BiddingHistory';
@@ -32,6 +33,7 @@ export default function ShowAuction(props) {
   const [bidIsMade, setBidIsMade] = useState(false);
   const [isTextFieldError, setIsTextFieldError] = useState(false);
   const [textFieldErrorMsg, setTextFieldErrorMsg] = useState('');
+  const [deleteAuctionMsg, setDeleteAuctionMsg] = useState('');
 
   const fetchAuctionData = async (id) => {
     const fetchedAuction = await getById(id);
@@ -58,33 +60,43 @@ export default function ShowAuction(props) {
   const handleBid = async () => {
     console.log('bidamount', bidAmount);
     console.log('highestBid', highestBid);
-    if (loggedinuser.email != bidData[bidData.length - 1].Budgivare) {
-      if (bidAmount > highestBid) {
-        if (bidAmount > auctionData.Utropspris) {
-          const randomBidId = Math.floor(Math.random() * 10000);
-          const bidObj = new BidModel(
-            randomBidId,
-            bidAmount,
-            auctionData.AuktionID,
-            loggedinuser.email
-          );
-          setBidData(bidData.concat(bidObj));
-          setBidIsMade(true);
-          setHighestBid(bidAmount);
-          handleInsertBid(bidObj);
-          document.getElementById('filled-basic').value = '';
+    if (loggedinuser.email != auctionData.SkapadAv) {
+      if (loggedinuser.email != bidData[bidData.length - 1]?.Budgivare) {
+        if (bidAmount > highestBid) {
+          if (bidAmount >= auctionData.Utropspris) {
+            const randomBidId = Math.floor(Math.random() * 10000);
+            const bidObj = new BidModel(
+              randomBidId,
+              bidAmount,
+              auctionData.AuktionID,
+              loggedinuser.email
+            );
+            setBidData(bidData.concat(bidObj));
+            setBidIsMade(true);
+            setHighestBid(bidAmount);
+            handleInsertBid(bidObj);
+            document.getElementById('filled-basic').value = '';
+          } else {
+            setIsTextFieldError(true);
+            setTextFieldErrorMsg('Budet måste vara högre än utropspriset');
+          }
         } else {
           setIsTextFieldError(true);
-          setTextFieldErrorMsg('Budet måste vara högre än utropspriset');
+          setTextFieldErrorMsg('Budet måste vara högre än det ledande budet');
         }
       } else {
         setIsTextFieldError(true);
-        setTextFieldErrorMsg('Budet måste vara högre än det ledande budet');
+        setTextFieldErrorMsg('Du leder redan budgivningen');
       }
     } else {
       setIsTextFieldError(true);
-      setTextFieldErrorMsg('Du leder redan budgivningen');
+      setTextFieldErrorMsg('Du får inte buda på din eget objekt');
     }
+  };
+
+  const handleDeleteAuction = () => {
+    deleteById(auctionData.AuktionID);
+    setDeleteAuctionMsg('Auktionen är borttagen. Lämna den här sidan.');
   };
 
   useEffect(() => {
@@ -123,8 +135,8 @@ export default function ShowAuction(props) {
                     {auctionData.Beskrivning}
                   </Typography>
                 </Grid>
-                <Grid item lg={12}>
-                  <Grid item lg={4}>
+                <Grid container>
+                  <Grid item lg={12}>
                     <br />
                     <Typography variant="subtitle2">Skapad</Typography>
                     <Typography>{auctionData.StartDatum}</Typography>
@@ -132,6 +144,21 @@ export default function ShowAuction(props) {
                     <Typography>{auctionData.SkapadAv}</Typography>
                     <Typography variant="subtitle2">AuktionsId</Typography>
                     <Typography>{auctionData.AuktionID}</Typography>
+                  </Grid>
+                  <Grid item lg={12}>
+                    {loggedinuser?.email === auctionData.SkapadAv &&
+                    bidData.length < 1 ? (
+                      <Button variant="contained" onClick={handleDeleteAuction}>
+                        Ta bort auktion
+                      </Button>
+                    ) : (
+                      <></>
+                    )}
+                  </Grid>
+                  <Grid item lg={12}>
+                    <Typography color="error" variant="h5">
+                      {deleteAuctionMsg}
+                    </Typography>
                   </Grid>
                 </Grid>
               </Grid>
@@ -228,7 +255,6 @@ export default function ShowAuction(props) {
                 <Grid item lg={12}>
                   <BiddingHistory bidData={bidData} />
                 </Grid>
-                <Grid item lg={12}></Grid>
               </Grid>
             </Paper>
           </Grid>
