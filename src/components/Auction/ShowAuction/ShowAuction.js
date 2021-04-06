@@ -20,7 +20,6 @@ import BidModel from '../../_model/BidModel';
 import BiddingHistory from './BiddingHistory/BiddingHistory';
 
 import useStyles from './styles';
-import Header from '../../Header';
 import { useStateValue } from '../../StateProvider';
 
 export default function ShowAuction(props) {
@@ -118,7 +117,6 @@ export default function ShowAuction(props) {
     <p>Datan laddas</p>
   ) : (
     <div className={classes.root}>
-      <Header />
       <Container className={classes.container}>
         <Grid container spacing={3}>
           <Grid item lg={7}>

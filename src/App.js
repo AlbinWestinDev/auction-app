@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import AuctionList from "./components/Auction/AuctionList";
 import AddAuction from "./components/Auction/CRUD/AddAuction";
 import EditAuction from "./components/EditAuction";
+import SearchAuction from './components/Auction/Search/SearchAuction';
 import { auth } from "./firebase";
 
 import { useStateValue } from "./components/StateProvider";
@@ -40,26 +41,28 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <Header />
         <Switch>
           <Route path="/Auktion/2310/Edit/:id" component={EditAuction} />
           <Route path="/Auktion/2310/:id" component={ShowAuction} />
           <Route path="/auction"></Route>
 
           <Route path="/login">
-            <Header />
             <Login />
           </Route>
 
           <Route path="/AddAuction">
-            <Header />
             <AddAuction />
           </Route>
 
+          <Route path="/Search/:searchTerm">
+            <SearchAuction />
+          </Route>
+               
           <Route path="/">
-            <Header />
-            <Home />
             <AuctionList />
           </Route>
+
         </Switch>
       </div>
     </Router>

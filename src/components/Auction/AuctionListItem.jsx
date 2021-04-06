@@ -18,17 +18,17 @@ const AuctionItem = ({ auction }) => {
   //     return [year, month, day].join('-');
   // };
 
-  const endDate = () => {
-    var d = new Date(auction.SlutDatum),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDay(),
-      year = '' + d.getFullYear();
+  // const endDate = () => {
+  //   var d = new Date(auction.SlutDatum),
+  //     month = '' + (d.getMonth() + 1),
+  //     day = '' + d.getDay(),
+  //     year = '' + d.getFullYear();
 
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
+  //   if (month.length < 2) month = '0' + month;
+  //   if (day.length < 2) day = '0' + day;
 
-    return [year, month, day].join('-');
-  };
+  //   return [year, month, day].join('-');
+  // };
 
   return (
     <div className="a-comp-holder">
@@ -38,7 +38,7 @@ const AuctionItem = ({ auction }) => {
 
           <p>Utropspris: {auction.Utropspris} kr</p>
 
-          <p>Slutdatum: {endDate()}</p>
+          <p>Slutdatum: {auction.SlutDatum}</p>
 
           <Link
             to={{

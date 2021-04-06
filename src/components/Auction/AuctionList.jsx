@@ -17,7 +17,7 @@ const AuctionList = () => {
     // getAll().then(t => setAuctions(t));
   }, []);
 
-  console.log(auctions);
+  // console.log(auctions);
 
   return (
     <div className="container">
