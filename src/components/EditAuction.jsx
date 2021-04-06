@@ -33,8 +33,10 @@ class EditAuction extends Component {
     this.setState({ auction: fetchedAuction });
 
     this.setState({ titel: fetchedAuction.Titel });
+
     this.setState({ beskrivning: fetchedAuction.Beskrivning });
-    this.setState({ beskrivning: fetchedAuction.SlutDatum });
+
+    this.setState({ slutdatum: fetchedAuction.SlutDatum });
 
     console.log(fetchedAuction);
   };
@@ -61,8 +63,11 @@ class EditAuction extends Component {
 
   handleSubmit(event) {
     var updatedAuction = this.state.auction;
+
     updatedAuction.Titel = this.state.titel;
+
     updatedAuction.Beskrivning = this.state.beskrivning;
+
     updatedAuction.SlutDatum = this.state.slutdatum;
 
     updateAuction(updatedAuction);
@@ -71,7 +76,7 @@ class EditAuction extends Component {
 
   render() {
     return (
-      <div className="form-group">
+      <div>
         <Header />
         <br />
         <Link className="btn btn-primary" to="/">
@@ -80,37 +85,37 @@ class EditAuction extends Component {
         <h1>Redigera Auktion</h1>
 
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Namn:
-            <input
-              name="titel"
-              type="text"
-              value={this.state.titel}
-              onChange={this.handleChange}
-            />
-          </label>
+          <div>
+            <label>
+              Titel:
+              <input
+                name="titel"
+                type="text"
+                value={this.state.titel}
+                onChange={this.handleChange}
+              />
+            </label>
 
-          <label>
-            Beskrivning:
-            <input
-              name="beskrivning"
-              type="text"
-              value={this.state.beskrivning}
-              onChange={this.handleChange}
-            />
-          </label>
-
-          <label>
-            Slut datum:
-            <input
-              name="slutdatum"
-              type="text"
-              value={this.state.slutdatum}
-              onChange={this.handleChange}
-            />
-          </label>
-
-          <input type="submit" value="Submit" />
+            <label>
+              Beskrivning:
+              <input
+                name="beskrivning"
+                type="text"
+                value={this.state.beskrivning}
+                onChange={this.handleChange}
+              />
+            </label>
+            <label>
+              SlutDatum:
+              <input
+                name="slutdatum"
+                type="text"
+                value={this.state.slutdatum}
+                onChange={this.handleChange}
+              />
+            </label>
+          </div>
+          <input type="submit" value="Submit" className="btn btn-primary" />
         </form>
       </div>
     );
