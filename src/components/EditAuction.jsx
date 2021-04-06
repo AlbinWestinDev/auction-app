@@ -9,7 +9,7 @@ class EditAuction extends Component {
       id: "",
       title: "",
       description: "",
-      price: "",
+      endDate: "",
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -29,7 +29,7 @@ class EditAuction extends Component {
             id: response.data.id,
             title: response.data.title,
             description: response.data.description,
-            price: response.data.price,
+            endDate: response.data.endDate,
           },
           () => {
             console.log(this.state);
@@ -56,7 +56,7 @@ class EditAuction extends Component {
     const newAuction = {
       title: this.refs.title.value,
       description: this.refs.description.value,
-      price: this.refs.price.value,
+      endDate: this.refs.price.value,
     };
     this.editAuction(newAuction);
     e.preventDefault();
@@ -89,7 +89,7 @@ class EditAuction extends Component {
               value={this.state.title}
               onChange={this.handleInputChange}
             />
-            <label htmlFor="title">Title</label>
+            <label htmlFor="title">Titel</label>
           </div>
           <div className="input-field">
             <input
@@ -99,17 +99,17 @@ class EditAuction extends Component {
               value={this.state.description}
               onChange={this.handleInputChange}
             />
-            <label htmlFor="city">Description</label>
+            <label htmlFor="description">Beskrivning</label>
           </div>
           <div className="input-field">
             <input
               type="text"
-              name="price"
-              ref="price"
+              name="endDate"
+              ref="endDate"
               value={this.state.price}
               onChange={this.handleInputChange}
             />
-            <label htmlFor="address">Price</label>
+            <label htmlFor="address">Slut datum</label>
           </div>
           <input type="submit" value="Save" className="btn" />
         </form>
