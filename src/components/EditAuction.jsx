@@ -7,9 +7,9 @@ class EditAuction extends Component {
     super(props);
     this.state = {
       id: "",
-      title: "",
-      description: "",
-      endDate: "",
+      title: undefined,
+      description: undefined,
+      endDate: undefined,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -82,6 +82,7 @@ class EditAuction extends Component {
         <h1>Edit Meetup</h1>
         <form onSubmit={this.onSubmit.bind(this)}>
           <div className="input-field">
+            <label htmlFor="title">Titel</label>
             <input
               type="text"
               name="title"
@@ -89,9 +90,9 @@ class EditAuction extends Component {
               value={this.state.title}
               onChange={this.handleInputChange}
             />
-            <label htmlFor="title">Titel</label>
           </div>
           <div className="input-field">
+            <label htmlFor="description">Beskrivning</label>
             <input
               type="text"
               name="description"
@@ -99,17 +100,16 @@ class EditAuction extends Component {
               value={this.state.description}
               onChange={this.handleInputChange}
             />
-            <label htmlFor="description">Beskrivning</label>
           </div>
           <div className="input-field">
+            <label htmlFor="address">Slut datum</label>
             <input
               type="text"
               name="endDate"
               ref="endDate"
-              value={this.state.price}
+              value={this.state.endDate}
               onChange={this.handleInputChange}
             />
-            <label htmlFor="address">Slut datum</label>
           </div>
           <input type="submit" value="Save" className="btn" />
         </form>
