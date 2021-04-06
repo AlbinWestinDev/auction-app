@@ -19,8 +19,8 @@ const AddAuction = () => {
     auction.OpeningPrice = useRef()
     auction.CreatedBy = useRef()
 
-    const addAuction = () => {
-        insertAuction(auction)
+    const addAuction = (obje) => {
+        insertAuction(obje)
         //console.log("Simulate upload.")
     }
     const backToHome = () => {
@@ -35,7 +35,7 @@ const AddAuction = () => {
     <input classname="input-field" type="date" ref={auction.EndDate} />
     <input classname="input-field" type="text" ref={auction.OpeningPrice} />
     <input classname="input-field" type="text" ref={auction.CreatedBy} />
-    <button clasname="btn grey" onClick={() => {addAuction(); backToHome();}}>Ladda upp</button>
+    <button clasname="btn grey" onClick={() => {addAuction(auction); backToHome();}}>Ladda upp</button>
 
     </div> );
 }
