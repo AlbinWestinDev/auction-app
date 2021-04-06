@@ -19,14 +19,12 @@ export default function BiddingHistory(props) {
       <Table className={classes.table} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            {/* <TableCell>Date</TableCell> */}
             <TableCell>Bud kr</TableCell>
             <TableCell>Budgivare</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {bidData
-            // .slice(0)
             .slice(Math.max(bidData.length - 5, 0))
             .reverse()
             .map((row) => (
