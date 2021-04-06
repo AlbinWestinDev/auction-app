@@ -3,6 +3,8 @@ import "./App.css";
 import Header from "./components/Header";
 import Login from "./components/Login";
 import Home from "./components/Home";
+
+import EditAuction from "./components/EditAuction";
 import { auth } from "./firebase";
 
 import { useStateValue } from "./components/StateProvider";
@@ -40,9 +42,16 @@ function App() {
           <Route path="/auction">
             <Header />
           </Route>
+
+          <Route path="/editauction">
+            <Header />
+            <EditAuction />
+          </Route>
+
           <Route path="/login">
             <Login />
           </Route>
+
           <Route path="/">
             <Header />
             <Home />
