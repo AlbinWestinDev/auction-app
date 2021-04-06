@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-const BASE_URL = "http://nackowskis.azurewebsites.net/api";
+const BASE_URL = 'http://nackowskis.azurewebsites.net/api';
 const GROUP_ID = 2310;
 
 //Returnerar en array med alla objekt
@@ -24,15 +24,23 @@ export const getByTitle = async (title) => {
   });
 };
 
+//Returnerar en lista med aktuella auktioner (där slutdatum ej gått ut)
+export const getUnexpiredAuctions = async () => {
+  const allAuctions = await getAll();
+  return allAuctions.filter((auc) => {
+    return new Date(auc.SlutDatum) > new Date();
+  });
+};
+
 // Tar emot ett auktionsobjekt och postar.
 export const insertAuction = (obj) => {
   const url = `${BASE_URL}/Auktion/${GROUP_ID}`;
-  axios.post(url, obj);
+  return axios.post(url, obj).then((response) => response.data);
 };
 
 // Tar emot ett budobjekt och postar.
 export const insertBid = (obj) => {
-  const url = `${BASE_URL}/Auktion/${GROUP_ID}`;
+  const url = `${BASE_URL}/Bud/${GROUP_ID}`;
   axios.post(url, obj);
 };
 
@@ -40,11 +48,18 @@ export const insertBid = (obj) => {
 export const updateAuction = (obj) => {
   const url = `${BASE_URL}/Auktion/${GROUP_ID}/${obj.AuktionID}`;
 
-  axios.put(url, obj);
+  return axios.put(url, obj).then((response) => {
+    console.log('axios put', response);
+  });
 };
 
 export const deleteById = (id) => {
   const url = `${BASE_URL}/Auktion/${GROUP_ID}/${id}`;
 
   axios.delete(url);
+};
+
+export const getBidByAuctionId = (id) => {
+  const url = `${BASE_URL}/Bud/${GROUP_ID}/${id}`;
+  return axios.get(url).then((response) => response.data);
 };
