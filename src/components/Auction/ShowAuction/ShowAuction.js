@@ -166,7 +166,7 @@ export default function ShowAuction(props) {
           <Grid item lg={5}>
             <Paper className={classes.paper} elevation={8}>
               <Grid container>
-                <Grid item lg={3}>
+                <Grid item xs={4} md={4} lg={3}>
                   <Typography color="primary">Ledande bud</Typography>
                   {bidData.length > 0 ? (
                     <Typography color="primary">{highestBid} kr</Typography>
@@ -174,13 +174,13 @@ export default function ShowAuction(props) {
                     <Typography variant="subtitle2">Inga bud ännu</Typography>
                   )}
                 </Grid>
-                <Grid item lg={3}>
+                <Grid item xs={4} md={4} lg={3}>
                   <Typography color="primary">Utropspris</Typography>
                   <Typography color="primary">
                     {auctionData.Utropspris} kr
                   </Typography>
                 </Grid>
-                <Grid item lg={6}>
+                <Grid item xs={4} md={4} lg={6}>
                   <Typography color="primary">Slutdatum</Typography>
                   <Typography color="primary">
                     {auctionData.SlutDatum}

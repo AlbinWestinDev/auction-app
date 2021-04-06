@@ -19,7 +19,7 @@ export default function BiddingHistory(props) {
       <Table className={classes.table} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>Bud kr</TableCell>
+            <TableCell>Bud</TableCell>
             <TableCell>Budgivare</TableCell>
           </TableRow>
         </TableHead>
@@ -29,7 +29,7 @@ export default function BiddingHistory(props) {
             .reverse()
             .map((row) => (
               <TableRow hover>
-                <TableCell>{row.Summa}</TableCell>
+                <TableCell>{row.Summa} kr</TableCell>
                 <TableCell>{row.Budgivare}</TableCell>
               </TableRow>
             ))}
