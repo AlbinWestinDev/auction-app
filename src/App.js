@@ -43,9 +43,7 @@ function App() {
         <Switch>
           <Route path="/Auktion/2310/Edit/:id" component={EditAuction} />
           <Route path="/Auktion/2310/:id" component={ShowAuction} />
-          <Route path="/auction">
-            <Header />
-          </Route>
+          <Route path="/auction"></Route>
 
           <Route path="/login">
             <Header />

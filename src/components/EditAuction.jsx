@@ -1,117 +1,116 @@
 import React, { Component } from "react";
-import axios from "axios";
+import Header from "./Header";
 import { Link } from "react-router-dom";
+
+import {
+  getById,
+  updateAuction,
+} from "../DataAPIManagerTool/NackowskisService";
 
 class EditAuction extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: "",
-      title: undefined,
-      description: undefined,
-      endDate: undefined,
+      value: "",
+      titel: "",
+      beskrivning: "",
+      slutdatum: "",
+      auction: "",
+      auctionId: props.match.params.id,
     };
 
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillMount() {
-    this.getAuctionDetails();
+  componentDidMount() {
+    this.fetchAuctionData(this.state.auctionId);
   }
 
-  getAuctionDetails() {
-    const auctionId = this.props.match.params.id;
-    axios
-      .get(`http://localhost:3000/api/Auktion/${auctionId}`)
-      .then((response) => {
-        this.setState(
-          {
-            id: response.data.id,
-            title: response.data.title,
-            description: response.data.description,
-            endDate: response.data.endDate,
-          },
-          () => {
-            console.log(this.state);
-          }
-        );
-      })
-      .catch((err) => console.log(err));
+  fetchAuctionData = async (id) => {
+    const fetchedAuction = await getById(id);
+
+    this.setState({ auction: fetchedAuction });
+
+    this.setState({ titel: fetchedAuction.Titel });
+    this.setState({ beskrivning: fetchedAuction.Beskrivning });
+    this.setState({ beskrivning: fetchedAuction.SlutDatum });
+
+    console.log(fetchedAuction);
+  };
+
+  updateAuctionData = async (obj) => {
+    await updateAuction(obj);
+
+    this.forceUpdate();
+  };
+
+  handleChange(event) {
+    console.log(event);
+
+    if (event.target.name == "titel") {
+      this.setState({ titel: event.target.value });
+    }
+    if (event.target.name == "beskrivning") {
+      this.setState({ beskrivning: event.target.value });
+    }
+    if (event.target.name == "slutdatum") {
+      this.setState({ slutdatum: event.target.value });
+    }
   }
 
-  editAuction(newAuction) {
-    axios
-      .request({
-        method: "put",
-        url: `http://localhost:3000/api/Auktion/${this.state.id}`,
-        data: newAuction,
-      })
-      .then((response) => {
-        this.props.history.push("/");
-      })
-      .catch((err) => console.log(err));
-  }
+  handleSubmit(event) {
+    var updatedAuction = this.state.auction;
+    updatedAuction.Titel = this.state.titel;
+    updatedAuction.Beskrivning = this.state.beskrivning;
+    updatedAuction.SlutDatum = this.state.slutdatum;
 
-  onSubmit(e) {
-    const newAuction = {
-      title: this.refs.title.value,
-      description: this.refs.description.value,
-      endDate: this.refs.price.value,
-    };
-    this.editAuction(newAuction);
-    e.preventDefault();
-  }
-
-  handleInputChange(e) {
-    const target = e.target;
-    const value = target.value;
-    const title = target.title;
-
-    this.setState({
-      [title]: value,
-    });
+    updateAuction(updatedAuction);
+    event.preventDefault();
   }
 
   render() {
     return (
-      <div>
+      <div className="form-group">
+        <Header />
         <br />
-        <Link className="btn grey" to="/">
+        <Link className="btn btn-primary" to="/">
           Back
         </Link>
-        <h1>Edit Meetup</h1>
-        <form onSubmit={this.onSubmit.bind(this)}>
-          <div className="input-field">
-            <label htmlFor="title">Titel</label>
+        <h1>Redigera Auktion</h1>
+
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Namn:
             <input
+              name="titel"
               type="text"
-              name="title"
-              ref="title"
-              value={this.state.title}
-              onChange={this.handleInputChange}
+              value={this.state.titel}
+              onChange={this.handleChange}
             />
-          </div>
-          <div className="input-field">
-            <label htmlFor="description">Beskrivning</label>
+          </label>
+
+          <label>
+            Beskrivning:
             <input
+              name="beskrivning"
               type="text"
-              name="description"
-              ref="description"
-              value={this.state.description}
-              onChange={this.handleInputChange}
+              value={this.state.beskrivning}
+              onChange={this.handleChange}
             />
-          </div>
-          <div className="input-field">
-            <label htmlFor="address">Slut datum</label>
+          </label>
+
+          <label>
+            Slut datum:
             <input
+              name="slutdatum"
               type="text"
-              name="endDate"
-              ref="endDate"
-              value={this.state.endDate}
-              onChange={this.handleInputChange}
+              value={this.state.slutdatum}
+              onChange={this.handleChange}
             />
-          </div>
-          <input type="submit" value="Save" className="btn" />
+          </label>
+
+          <input type="submit" value="Submit" />
         </form>
       </div>
     );
