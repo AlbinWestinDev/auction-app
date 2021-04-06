@@ -161,6 +161,9 @@ export default function ShowAuction(props) {
                     ) : (
                       <></>
                     )}
+                  </Grid>
+                  <Grid item lg={12}>
+                    <br />
                     {loggedinuser?.email === auctionData.SkapadAv &&
                     bidData.length < 1 ? (
                       <Button variant="contained" onClick={handleDeleteAuction}>
