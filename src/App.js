@@ -42,6 +42,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/Auktion/2310/:id" component={ShowAuction} />
+          <Route path="/Auktion/2310/Edit/:id" component={EditAuction} />
           <Route path="/auction">
             <Header />
           </Route>
