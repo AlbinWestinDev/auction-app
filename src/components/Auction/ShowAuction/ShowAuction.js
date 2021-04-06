@@ -182,98 +182,111 @@ export default function ShowAuction(props) {
               </Grid>
             </Paper>
           </Grid>
+
           <Grid item lg={5}>
             <Paper className={classes.paper} elevation={8}>
-              <Grid container>
-                <Grid item xs={4} md={4} lg={3}>
-                  <Typography color="primary">Ledande bud</Typography>
-                  {bidData.length > 0 ? (
-                    <Typography color="primary">{highestBid} kr</Typography>
-                  ) : (
-                    <Typography variant="subtitle2">Inga bud ännu</Typography>
-                  )}
-                </Grid>
-                <Grid item xs={4} md={4} lg={3}>
-                  <Typography color="primary">Utropspris</Typography>
-                  <Typography color="primary">
-                    {auctionData.Utropspris} kr
-                  </Typography>
-                </Grid>
-                <Grid item xs={4} md={4} lg={6}>
-                  <Typography color="primary">Slutdatum</Typography>
-                  <Typography color="primary">
-                    {auctionData.SlutDatum}
-                  </Typography>
-                </Grid>
-                <Grid item lg={12}>
-                  <br />
-                  <Typography variant="h6" color="primary">
-                    Lägg ett bud
-                  </Typography>
-                  <>
-                    {!loggedinuser ? (
-                      <Typography>Logga in för att lägga ett bud</Typography>
-                    ) : (
-                      <form className={classes.bidForm}>
-                        <Grid container>
-                          <Grid item lg={6}>
-                            <TextField
-                              error={isTextFieldError}
-                              id="filled-basic"
-                              variant="filled"
-                              label="kr"
-                              type="number"
-                              helperText="Kom ihåg att alla bud är bindande"
-                              onChange={(e) => {
-                                setIsTextFieldError(false);
-                                setBidAmount(e.target.value);
-                              }}
-                            />
+              {Date.now() > Date.parse(auctionData.SlutDatum) ? (
+                <Typography align="center" variant="h6">
+                  AUKTIONEN ÄR AVSLUTAD
+                </Typography>
+              ) : (
+                <>
+                  <Grid container>
+                    <Grid item xs={4} md={4} lg={3}>
+                      <Typography color="primary">Ledande bud</Typography>
+                      {bidData.length > 0 ? (
+                        <Typography color="primary">{highestBid} kr</Typography>
+                      ) : (
+                        <Typography variant="subtitle2">
+                          Inga bud ännu
+                        </Typography>
+                      )}
+                    </Grid>
+                    <Grid item xs={4} md={4} lg={3}>
+                      <Typography color="primary">Utropspris</Typography>
+                      <Typography color="primary">
+                        {auctionData.Utropspris} kr
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={4} md={4} lg={6}>
+                      <Typography color="primary">Slutdatum</Typography>
+                      <Typography color="primary">
+                        {auctionData.SlutDatum}
+                      </Typography>
+                    </Grid>
+                    <Grid item lg={12}>
+                      <br />
+                      <Typography variant="h6" color="primary">
+                        Lägg ett bud
+                      </Typography>
+                      <>
+                        {!loggedinuser ? (
+                          <Typography>
+                            Logga in för att lägga ett bud
+                          </Typography>
+                        ) : (
+                          <form className={classes.bidForm}>
+                            <Grid container>
+                              <Grid item lg={6}>
+                                <TextField
+                                  error={isTextFieldError}
+                                  id="filled-basic"
+                                  variant="filled"
+                                  label="kr"
+                                  type="number"
+                                  helperText="Kom ihåg att alla bud är bindande"
+                                  onChange={(e) => {
+                                    setIsTextFieldError(false);
+                                    setBidAmount(e.target.value);
+                                  }}
+                                />
 
-                            {isTextFieldError ? (
-                              <Typography color="error">
-                                {textFieldErrorMsg}
-                              </Typography>
-                            ) : (
-                              <> </>
-                            )}
-                          </Grid>
-                          <Grid item lg={2}>
-                            <>
-                              {bidIsMade ? (
-                                <Typography color="success">
-                                  Du leder budgivningen!
-                                </Typography>
-                              ) : (
-                                <></>
-                              )}
-                            </>
-                          </Grid>
-                        </Grid>
-                        <Grid item lg={12}>
-                          <Button variant="contained" onClick={handleBid}>
-                            LÄGG BUD
-                          </Button>
-                        </Grid>
-                      </form>
-                    )}
-                  </>
-                </Grid>
-              </Grid>
-              <br />
-              <Divider />
-              <br />
-              <Grid container>
-                <Grid item lg={12}>
-                  <Typography variant="h5">Budhistorik</Typography>
-                  <Typography variant="subtitle2">
-                    Visar endast de 5 senaste buden
-                  </Typography>
-                </Grid>
-                <Grid item lg={12}>
-                  <BiddingHistory bidData={bidData} />
-                </Grid>
-              </Grid>
+                                {isTextFieldError ? (
+                                  <Typography color="error">
+                                    {textFieldErrorMsg}
+                                  </Typography>
+                                ) : (
+                                  <> </>
+                                )}
+                              </Grid>
+                              <Grid item lg={2}>
+                                <>
+                                  {bidIsMade ? (
+                                    <Typography color="success">
+                                      Du leder budgivningen!
+                                    </Typography>
+                                  ) : (
+                                    <></>
+                                  )}
+                                </>
+                              </Grid>
+                            </Grid>
+                            <Grid item lg={12}>
+                              <Button variant="contained" onClick={handleBid}>
+                                LÄGG BUD
+                              </Button>
+                            </Grid>
+                          </form>
+                        )}
+                      </>
+                    </Grid>
+                  </Grid>
+                  <br />
+                  <Divider />
+                  <br />
+                  <Grid container>
+                    <Grid item lg={12}>
+                      <Typography variant="h5">Budhistorik</Typography>
+                      <Typography variant="subtitle2">
+                        Visar endast de 5 senaste buden
+                      </Typography>
+                    </Grid>
+                    <Grid item lg={12}>
+                      <BiddingHistory bidData={bidData} />
+                    </Grid>
+                  </Grid>
+                </>
+              )}
             </Paper>
           </Grid>
         </Grid>
