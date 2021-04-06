@@ -35,10 +35,10 @@ function Header() {
             </span>
           </div>
         </Link>
-        <Link to="/" className="header_link">
+        <Link to="/AddAuction" className="header_link">
           <div className="header_option">
-            <span className="header_optionLineOne"> Om oss</span>
-            <span className="header_optionLineTwo"> Läs här</span>
+            <span className="header_optionLineOne"> Lägg till</span>
+            <span className="header_optionLineTwo"> Ny Auktion</span>
           </div>
         </Link>
         <Link to="/" className="header_link">

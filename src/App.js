@@ -33,7 +33,7 @@ function App() {
     return () => {
       unsubsribe();
     };
-  }, [dispatch]);
+  }, []);
 
   console.log("user>>", loggedinuser);
 
@@ -52,7 +52,12 @@ function App() {
             <Login />
           </Route>
 
-          <Route path="/AddAuction" component={AddAuction}>
+          <Route path="/AddAuction">
+            <Header />
+            <AddAuction />
+          </Route>
+
+          <Route path="/">
             <Header />
             <Home />
             <AuctionList />
