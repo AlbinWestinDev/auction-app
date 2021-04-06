@@ -1,20 +1,13 @@
 class AuctionObject {
-  constructor(
-    auctionId,
-    titel,
-    description,
-    startDate,
-    endDate,
-    openingPrice,
-    createdBy
-  ) {
-    this.AuctionID = auctionId;
+  constructor(titel, description, startDate, endDate, openingPrice, createdBy) {
+    this.AuktionID = null;
     this.Titel = titel;
-    this.Description = description;
-    this.StartDate = startDate;
-    this.EndDate = endDate;
-    this.OpeningPrice = openingPrice;
-    this.CreatedBy = createdBy;
+    this.Beskrivning = description;
+    this.StartDatum = startDate;
+    this.SlutDatum = endDate;
+    this.Gruppkod = "2310";
+    this.Utropspris = openingPrice;
+    this.SkapadAv = createdBy;
   }
 }
 
