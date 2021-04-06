@@ -58,9 +58,9 @@ export default function ShowAuction(props) {
   const handleBid = async () => {
     console.log('bidamount', bidAmount);
     console.log('highestBid', highestBid);
-    if (bidAmount > highestBid) {
-      if (bidAmount > auctionData.Utropspris) {
-        if (loggedinuser.email != bidData[bidData.length - 1].Budgivare) {
+    if (loggedinuser.email != bidData[bidData.length - 1].Budgivare) {
+      if (bidAmount > highestBid) {
+        if (bidAmount > auctionData.Utropspris) {
           const randomBidId = Math.floor(Math.random() * 10000);
           const bidObj = new BidModel(
             randomBidId,
@@ -75,15 +75,15 @@ export default function ShowAuction(props) {
           document.getElementById('filled-basic').value = '';
         } else {
           setIsTextFieldError(true);
-          setTextFieldErrorMsg('Du leder redan budgivningen');
+          setTextFieldErrorMsg('Budet måste vara högre än utropspriset');
         }
       } else {
         setIsTextFieldError(true);
-        setTextFieldErrorMsg('Budet måste vara högre än utropspriset');
+        setTextFieldErrorMsg('Budet måste vara högre än det ledande budet');
       }
     } else {
       setIsTextFieldError(true);
-      setTextFieldErrorMsg('Budet måste vara högre än det ledande budet');
+      setTextFieldErrorMsg('Du leder redan budgivningen');
     }
   };
 
