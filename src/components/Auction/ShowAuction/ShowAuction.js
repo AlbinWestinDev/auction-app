@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link as LinkDOM } from 'react-router-dom';
 import {
   Button,
   Container,
@@ -7,6 +8,7 @@ import {
   Paper,
   TextField,
   Typography,
+  Link,
 } from '@material-ui/core';
 import {
   getById,
@@ -145,6 +147,20 @@ export default function ShowAuction(props) {
                     <Typography>{auctionData.AuktionID}</Typography>
                   </Grid>
                   <Grid item lg={12}>
+                    {loggedinuser?.email === auctionData.SkapadAv ? (
+                      <Link component="button">
+                        <LinkDOM
+                          to={{
+                            pathname: `/Auktion/2310/Edit/${auctionData.AuktionID}`,
+                            auctionObj: auctionData,
+                          }}
+                        >
+                          Ändra auktion
+                        </LinkDOM>
+                      </Link>
+                    ) : (
+                      <></>
+                    )}
                     {loggedinuser?.email === auctionData.SkapadAv &&
                     bidData.length < 1 ? (
                       <Button variant="contained" onClick={handleDeleteAuction}>
