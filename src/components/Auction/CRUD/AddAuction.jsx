@@ -1,5 +1,6 @@
 import React,{useRef} from 'react';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import { insertAuction } from '../../../DataAPIManagerTool/NackowskisService';
 import AuctionObject from "./AuctionClass"
 
@@ -8,34 +9,41 @@ const AddAuction = () => {
     
     const history = useHistory();
     //Creates a new instance of an AuctionObject
-    let auction = new AuctionObject();
-
-    auction.AuctionID = 0
-    auction.Titel = useRef();
-    auction.Description = useRef()
-    auction.StartDate = useRef()
-    auction.EndDate = useRef()
-    auction.GroupCode = 2310
-    auction.OpeningPrice = useRef()
-    auction.CreatedBy = useRef()
+    
+    const title = useRef("");
+    const description = useRef("");
+    const startdate = useRef(null);
+    const enddate = useRef(null);
+    const openingPrice = useRef("");
+    const owner = useRef("");
+    
+    
 
     const addAuction = () => {
-        insertAuction(auction)
+        let auction = new AuctionObject(title.current.value, 
+            description.current.value, startdate.current.value, 
+            enddate.current.value, openingPrice.current.value, 
+            owner.current.value);
+        
+        insertAuction(auction);
         //console.log("Simulate upload.")
     }
-    const backToHome = () => {
-        history.push("/");
-    }
-
+    
     //Writes up the "form"
     return ( <div className="new-auction">
-    <input classname="input-field" type="text" ref={auction.Titel} />
-    <input classname="input-field" type="text" ref={auction.Description} />
-    <input classname="input-field" type="date" ref={auction.StartDate} />
-    <input classname="input-field" type="date" ref={auction.EndDate} />
-    <input classname="input-field" type="text" ref={auction.OpeningPrice} />
-    <input classname="input-field" type="text" ref={auction.CreatedBy} />
-    <button clasname="btn grey" onClick={() => {addAuction(); backToHome();}}>Ladda upp</button>
+        <label htmlFor="titel">Titel</label>
+    <input id="titel" classname="input-field" type="text" ref={title} />
+    <label htmlFor="description">Beskrivning</label>
+    <textarea id="description" classname="input-field" type="" ref={description} />
+    <label htmlFor="startDate">Startdatum</label>
+    <input id="startDate" classname="input-field" type="date" ref={startdate} />
+    <label htmlFor="endDate">Slutdatum</label>
+    <input id="endDate" classname="input-field" type="date" ref={enddate} />
+    <label htmlFor="price">Öppningsbud</label>
+    <input id="price" classname="input-field" type="text" pattern="[0-9]" ref={openingPrice} />
+    <label htmlFor="createdBy">Ägare</label>
+    <input id="createdBy" classname="input-field" type="text" ref={owner} />
+    <Link to="/" className="btn grey" onClick={() => {addAuction();}}>Ladda upp</Link>
 
     </div> );
 }
