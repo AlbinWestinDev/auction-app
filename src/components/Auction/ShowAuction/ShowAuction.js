@@ -29,7 +29,6 @@ export default function ShowAuction(props) {
   const [{ loggedinuser }, dispatch] = useStateValue();
   const classes = useStyles();
   const [bidAmount, setBidAmount] = useState();
-  const [bidColor, setBidColor] = useState('primary');
   const [bidIsMade, setBidIsMade] = useState(false);
   const [isTextFieldError, setIsTextFieldError] = useState(false);
   const [textFieldErrorMsg, setTextFieldErrorMsg] = useState('');
@@ -170,7 +169,7 @@ export default function ShowAuction(props) {
                 <Grid item lg={3}>
                   <Typography color="primary">Ledande bud</Typography>
                   {bidData.length > 0 ? (
-                    <Typography color={bidColor}>{highestBid} kr</Typography>
+                    <Typography color="primary">{highestBid} kr</Typography>
                   ) : (
                     <Typography variant="subtitle2">Inga bud ännu</Typography>
                   )}
