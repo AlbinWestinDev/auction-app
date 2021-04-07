@@ -21,6 +21,7 @@ import BiddingHistory from './BiddingHistory/BiddingHistory';
 
 import useStyles from './styles';
 import { useStateValue } from '../../StateProvider';
+import dayjs from 'dayjs';
 
 export default function ShowAuction(props) {
   const [auctionData, setAuctionData] = useState();
@@ -138,7 +139,12 @@ export default function ShowAuction(props) {
                   <Grid item lg={12}>
                     <br />
                     <Typography variant="subtitle2">Skapad</Typography>
-                    <Typography>{auctionData.StartDatum}</Typography>
+                    <Typography>
+                      {' '}
+                      {dayjs(auctionData.StartDatum).format(
+                        'DD-MM-YYYY, HH:ss'
+                      )}
+                    </Typography>
                     <Typography variant="subtitle2">Skapad av</Typography>
                     <Typography>{auctionData.SkapadAv}</Typography>
                     <Typography variant="subtitle2">AuktionsId</Typography>
@@ -209,7 +215,9 @@ export default function ShowAuction(props) {
                     <Grid item xs={4} md={4} lg={6}>
                       <Typography color="primary">Slutdatum</Typography>
                       <Typography color="primary">
-                        {auctionData.SlutDatum}
+                        {dayjs(auctionData.SlutDatum).format(
+                          'DD-MM-YYYY, HH:ss'
+                        )}
                       </Typography>
                     </Grid>
                     <Grid item lg={12}>
