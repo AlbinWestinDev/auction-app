@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link, useHistory } from 'react-router-dom';
 import './Header.css';
-import logo from '../style/img/logo7.png';
+import logo from '../style/img/logo8.png';
 import searchicon from '../style/img/search.png';
 
 import { useStateValue } from './StateProvider';
