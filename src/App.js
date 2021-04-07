@@ -54,6 +54,7 @@ function App() {
           <Route path="/AddAuction">
             <AddAuction />
           </Route>
+          <Redirect to="/"/>
 
           <Route path="/Search/:searchTerm">
             <SearchAuction />
