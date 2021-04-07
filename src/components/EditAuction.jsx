@@ -50,13 +50,13 @@ class EditAuction extends Component {
   handleChange(event) {
     console.log(event);
 
-    if (event.target.name == "titel") {
+    if (event.target.name === "titel") {
       this.setState({ titel: event.target.value });
     }
-    if (event.target.name == "beskrivning") {
+    if (event.target.name === "beskrivning") {
       this.setState({ beskrivning: event.target.value });
     }
-    if (event.target.name == "slutdatum") {
+    if (event.target.name === "slutdatum") {
       this.setState({ slutdatum: event.target.value });
     }
   }
