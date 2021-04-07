@@ -6,13 +6,20 @@
 
 .container {
   justify-content: center;
+  background-color: #f5f6f4;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 5px;
+  box-shadow: 1px 7px 21px -16px #000;
+  border-radius: 3px;
 }
 
 .a-list-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+
   row-gap: 30px;
-  margin: 60px;
+  margin: 20px;
   align-items: center;
   justify-items: center;
 }
@@ -22,7 +29,7 @@
   height: 280px;
 
   padding: 30px;
-  background-color: rgba(255, 174, 0, 1);
+  background-color: #b5aa9d;
   border-radius: 7px 7px 3px 3px;
 
   -webkit-box-shadow: -1px 7px 21px -16px rgba(0, 0, 0, 0.75);
