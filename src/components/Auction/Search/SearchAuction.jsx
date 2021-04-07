@@ -22,6 +22,10 @@ const SearchAuction = () => {
     getAuctions();
   }, []);
 
+  useEffect(() => {
+    getAuctions();
+  }, [searchTerm]);
+
   return (
     <>
       <div className="container">
