@@ -228,7 +228,8 @@ export default function ShowAuction(props) {
                       <>
                         {!loggedinuser ? (
                           <Typography>
-                            Logga in för att lägga ett bud
+                            <LinkDOM to={'/login'}>Logga in</LinkDOM> för att
+                            lägga ett bud
                           </Typography>
                         ) : (
                           <form className={classes.bidForm}>
