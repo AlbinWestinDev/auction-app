@@ -35,9 +35,13 @@
   border-radius: 10px;
   -webkit-box-shadow: inset 5px 5px 6px -3px rgba(0, 0, 0, 0.64);
   box-shadow: inset 5px 5px 6px -3px rgba(0, 0, 0, 0.64);
-
   background: #cccbc9;
 }
+
+.header_searchInput:focus {
+  outline: none;
+}
+
 .headerSearchIcon {
   color: orange;
   padding: 5px;
