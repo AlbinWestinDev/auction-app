@@ -6,8 +6,6 @@ import AuctionObject from "./AuctionClass"
 
 
 const AddAuction = () => {
-    
-    const history = useHistory();
     //Creates a new instance of an AuctionObject
     
     const title = useRef("");
@@ -16,6 +14,7 @@ const AddAuction = () => {
     const enddate = useRef(null);
     const openingPrice = useRef("");
     const owner = useRef("");
+    let err = "";
     
     
 
@@ -28,10 +27,24 @@ const AddAuction = () => {
         insertAuction(auction);
         //console.log("Simulate upload.")
     }
+    const numberValidation =(e) => {
+        if(!Number(e.target.value)){
+            err="Ditt pris måste vara ett tal";
+        }else{
+            err =""
+        }
+    }
+    const submitHandler = (e) =>{
+        e.preventDefault();
+
+
+    }
     
     //Writes up the "form"
     return ( <div className="new-auction">
-        <label htmlFor="titel">Titel</label>
+
+    <form className="auction-form" name="auction-form" onSubmit={submitHandler}>
+    <label htmlFor="titel">Titel</label>
     <input id="titel" classname="input-field" type="text" ref={title} />
     <label htmlFor="description">Beskrivning</label>
     <textarea id="description" classname="input-field" type="" ref={description} />
@@ -40,11 +53,12 @@ const AddAuction = () => {
     <label htmlFor="endDate">Slutdatum</label>
     <input id="endDate" classname="input-field" type="date" ref={enddate} />
     <label htmlFor="price">Öppningsbud</label>
-    <input id="price" classname="input-field" type="text" pattern="[0-9]" ref={openingPrice} />
+    <input id="price" classname="input-field" type="text" pattern="[0-9]" ref={openingPrice} onChange={numberValidation}/>
     <label htmlFor="createdBy">Ägare</label>
     <input id="createdBy" classname="input-field" type="text" ref={owner} />
+    <p>{err}</p>
     <Link to="/" className="btn grey" onClick={() => {addAuction();}}>Ladda upp</Link>
-
+    </form>
     </div> );
 }
  
