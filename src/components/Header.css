@@ -1,5 +1,8 @@
 .header {
-  background-color: #ffa347;
+  /* background-color: #ce6c47; */
+  background-color: RGBA(69, 69, 69, 0.8);
+  backdrop-filter: blur(5px);
+  box-shadow: 1px 7px 10px -15px #262625;
   display: flex;
   align-items: center;
   position: sticky;
