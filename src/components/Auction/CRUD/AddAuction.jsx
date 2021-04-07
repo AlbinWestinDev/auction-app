@@ -1,5 +1,4 @@
-import React,{useRef} from 'react';
-import { useHistory } from 'react-router';
+import React,{useRef, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { insertAuction } from '../../../DataAPIManagerTool/NackowskisService';
 import AuctionObject from "./AuctionClass"
@@ -14,7 +13,7 @@ const AddAuction = () => {
     const enddate = useRef(null);
     const openingPrice = useRef("");
     const owner = useRef("");
-    let err = "";
+    let [errormsg, setErrorMsg] = useState("");
     
     
 
@@ -29,9 +28,9 @@ const AddAuction = () => {
     }
     const numberValidation =(e) => {
         if(!Number(e.target.value)){
-            err="Ditt pris måste vara ett tal";
+            setErrorMsg("Ditt pris måste vara ett tal");
         }else{
-            err =""
+            setErrorMsg("")
         }
     }
     const submitHandler = (e) =>{
@@ -45,19 +44,19 @@ const AddAuction = () => {
 
     <form className="auction-form" name="auction-form" onSubmit={submitHandler}>
     <label htmlFor="titel">Titel</label>
-    <input id="titel" classname="input-field" type="text" ref={title} />
+    <input id="titel" classname="input-field" type="text" ref={title} placeholder="Titel:"/>
     <label htmlFor="description">Beskrivning</label>
-    <textarea id="description" classname="input-field" type="" ref={description} />
+    <textarea id="description" classname="input-field" type="" ref={description} placeholder="Beskrivning:"/>
     <label htmlFor="startDate">Startdatum</label>
     <input id="startDate" classname="input-field" type="date" ref={startdate} />
     <label htmlFor="endDate">Slutdatum</label>
     <input id="endDate" classname="input-field" type="date" ref={enddate} />
     <label htmlFor="price">Öppningsbud</label>
-    <input id="price" classname="input-field" type="text" pattern="[0-9]" ref={openingPrice} onChange={numberValidation}/>
+    <input id="price" classname="input-field" type="text" ref={openingPrice} onChange={numberValidation}/>
     <label htmlFor="createdBy">Ägare</label>
     <input id="createdBy" classname="input-field" type="text" ref={owner} />
-    <p>{err}</p>
-    <Link to="/" className="btn grey" onClick={() => {addAuction();}}>Ladda upp</Link>
+    <p>{errormsg}</p>
+    <button type="submit" className="btn grey" onClick={() => {addAuction();}}>Ladda upp</button>
     </form>
     </div> );
 }

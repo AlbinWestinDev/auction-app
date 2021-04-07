@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import "./App.css";
+import "./Styles/style.scss";
 import Header from "./components/Header";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import AuctionList from "./components/Auction/AuctionList";
 import AddAuction from "./components/Auction/CRUD/AddAuction";
 import EditAuction from "./components/EditAuction";
-import SearchAuction from './components/Auction/Search/SearchAuction';
+import SearchAuction from "./components/Auction/Search/SearchAuction";
 import { auth } from "./firebase";
 
 import { useStateValue } from "./components/StateProvider";
@@ -58,11 +59,10 @@ function App() {
           <Route path="/Search/:searchTerm">
             <SearchAuction />
           </Route>
-               
+
           <Route path="/">
             <AuctionList />
           </Route>
-
         </Switch>
       </div>
     </Router>

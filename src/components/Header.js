@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { Link } from "react-router-dom";
-import "./Header.css";
-
 import { useStateValue } from "./StateProvider";
 import { auth } from "../firebase";
 
-
 function Header() {
   const [{ loggedinuser }, dispatch] = useStateValue();
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const logoutUser = () => {
     if (loggedinuser) {
       auth.signOut();
@@ -18,23 +15,28 @@ function Header() {
 
   return (
     <nav className="header">
-      <img
-        className="header_logo"
-        alt="logo"
-        src="https://image.shutterstock.com/image-vector/creative-auction-logo-you-can-260nw-1095315374.jpg"
-      />
-      
+      <Link to={"/"}>
+        <img
+          className="header_logo"
+          alt="logo"
+          src="https://image.shutterstock.com/image-vector/creative-auction-logo-you-can-260nw-1095315374.jpg"
+        />
+      </Link>
+
       {/* SEARCH */}
       <div className="header_search">
         <input
-            type="text"
-            className="header_searchInput"
-            value={searchTerm}
-            onChange={e => setSearchTerm(e.target.value)}
-         />
-        <Link to={{
-          pathname:`/Search/${searchTerm}`
-        }}><SearchIcon className="headerSearchIcon"/></Link>
+          type="text"
+          className="header_searchInput"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <Link
+          to={{
+            pathname: `/Search/${searchTerm}`,
+          }}>
+          <SearchIcon className="headerSearchIcon" />
+        </Link>
       </div>
 
       <div className="header-nav">
@@ -47,10 +49,17 @@ function Header() {
             <span className="header_optionLineTwo">
               {loggedinuser ? "Logga ut" : "Logga in"}
             </span>
-
           </div>
         </Link>
-        <Link to="/AddAuction" className="header_link">
+        <Link
+          to={"/AddAuction"}
+          className="header_link"
+          onClick={(e) => {
+            if (!loggedinuser) {
+              e.preventDefault();
+              alert("Du måste vara inloggad för att skapa en ny auktion");
+            }
+          }}>
           <div className="header_option">
             <span className="header_optionLineOne"> Lägg till</span>
             <span className="header_optionLineTwo"> Ny Auktion</span>

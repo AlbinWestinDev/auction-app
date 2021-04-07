@@ -1,0 +1,73 @@
+$backgroundGreen: #89937c;
+$ligtOrange: ;
+$mainGrey: #b5aa9d;
+$offWhite: #f5f6f4;
+$darkOrange: #cc6600;
+$charcoal: #36454f;
+
+/*overall styles*/
+* {
+  background-color: $backgroundGreen;
+  color: $charcoal;
+}
+/*Header styles*/
+.header {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: $ligtOrange;
+}
+.header_logo {
+  width: 100px;
+  margin: 0 20px;
+}
+.header_search {
+  display: flex;
+  margin-left: 20px;
+  height: 35px;
+
+  flex: 1;
+}
+.header_searchIcon {
+  color: none;
+  padding: 5px;
+  height: 22px !important;
+}
+.header_searchInput {
+  padding: 20px;
+  border: none;
+  width: 70%;
+}
+
+.header_link {
+  text-decoration: none;
+}
+.header_option {
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 80px;
+  margin-right: 50px;
+}
+.header_optionLineOne {
+  font-size: 15px;
+}
+.header_optionLineTwo {
+  font-size: 19px;
+  font-weight: 800;
+}
+.header-nav {
+  display: flex;
+  text-align: left;
+  justify-content: space-evenly;
+}
+
+/*Card styles*/
+.auction-card {
+  background: $mainGrey;
+}
+.card-holder {
+  background: $offWhite;
+}
