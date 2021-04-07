@@ -2,6 +2,8 @@ import React, { useState, useCallback } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link, useHistory } from 'react-router-dom';
 import './Header.css';
+import logo from '../style/img/logo7.png';
+import searchicon from '../style/img/search.png';
 
 import { useStateValue } from './StateProvider';
 import { auth } from '../firebase';
@@ -25,12 +27,7 @@ function Header() {
 
   return (
     <nav className="header">
-      <img
-        className="header_logo"
-        alt="logo"
-        src="https://image.shutterstock.com/image-vector/creative-auction-logo-you-can-260nw-1095315374.jpg"
-      />
-
+      
       {/* SEARCH */}
       <div className="header_search">
         <input
@@ -48,9 +45,17 @@ function Header() {
             pathname: `/Search/${searchTerm}`,
           }}
         >
-          <SearchIcon className="headerSearchIcon" />
+          <img src='https://www.pngkey.com/png/full/16-164810_transparent-search-icon-png.png'  alt='Search' className="headerSearchIcon" />
         </Link>
       </div>
+
+      <Link to='/'>
+      <img
+        className="header_logo"
+        alt="logo"
+        src={logo}
+      /></Link>
+      
 
       {loggedinuser ? (
         <Link to="/AddAuction" className="header_link">
