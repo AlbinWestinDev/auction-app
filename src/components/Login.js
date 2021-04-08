@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import "./Login.css";
-import { Link, useHistory } from "react-router-dom";
-import { auth } from "../firebase";
+import React, { useState } from 'react';
+import './Login.css';
+import { Link, useHistory } from 'react-router-dom';
+import { auth } from '../firebase';
 
 function Login() {
   const history = useHistory();
-  const [useremail, setUserEmail] = useState("");
-  const [userpassword, setUserPassword] = useState("");
+  const [useremail, setUserEmail] = useState('');
+  const [userpassword, setUserPassword] = useState('');
 
   const loginuser = (event) => {
     event.preventDefault();
     auth
       .signInWithEmailAndPassword(useremail, userpassword)
       .then((auth) => {
-        history.push("/");
+        history.goBack();
       })
       .catch((e) => alert(e.message));
   };
@@ -22,31 +22,26 @@ function Login() {
     auth
       .createUserWithEmailAndPassword(useremail, userpassword)
       .then((auth) => {
-        history.push("/");
+        history.goBack();
       })
       .catch((e) => alert(e.message));
   };
 
   return (
     <div className="login">
-      <Link>
-        <img
-          className="login__logo"
-          src="https://image.shutterstock.com/image-vector/creative-auction-logo-you-can-260nw-1095315374.jpg"
-          alt=""
-        />
-      </Link>
+      <br />
+      <br />
       <div className="login__container">
-        <h1>Sign in</h1>
+        <h1>Logga in</h1>
         <form>
-          <h5>E-mail</h5>
+          <h5>E-post</h5>
           <input
             value={useremail}
             onChange={(event) => setUserEmail(event.target.value)}
             type="email"
           />
 
-          <h5>Password</h5>
+          <h5>Lösenord</h5>
           <input
             value={userpassword}
             onChange={(event) => setUserPassword(event.target.value)}
@@ -57,13 +52,17 @@ function Login() {
             type="submit"
             class="btn btn-outline-primary"
           >
-            Sign in
+            Logga in
           </button>
         </form>
-        <p>By signing in you agree to the Terms</p>
+        <br />
         <button onClick={signupuser} class="btn btn-outline-primary">
-          Create you account
+          Skapa konto
         </button>
+        <p>
+          Genom att skapa ett konto godkänner du användarvillkor och
+          integritetspolicy
+        </p>
       </div>
     </div>
   );
