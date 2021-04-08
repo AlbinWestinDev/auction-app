@@ -190,9 +190,20 @@ export default function ShowAuction(props) {
           <Grid item lg={5}>
             <Paper className={classes.paper} elevation={8}>
               {Date.now() > Date.parse(auctionData.SlutDatum) ? (
-                <Typography align="center" variant="h6">
-                  AUKTIONEN ÄR AVSLUTAD
-                </Typography>
+                <>
+                  <Typography align="center" variant="h6" color="error">
+                    AUKTIONEN ÄR AVSLUTAD
+                  </Typography>
+                  {bidData.length > 0 ? (
+                    <Typography align="center" variant="h6">
+                      Vinnande bud: {bidData[bidData.length - 1].Summa} kr
+                    </Typography>
+                  ) : (
+                    <Typography align="center" variant="h6">
+                      Ingen vann detta objekt.
+                    </Typography>
+                  )}
+                </>
               ) : (
                 <>
                   <Grid container>
