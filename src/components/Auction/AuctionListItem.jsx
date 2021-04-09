@@ -25,8 +25,7 @@ const AuctionItem = ({ auction }) => {
           <p>Utropspris: {auction.Utropspris} kr</p>
           
           <p>Slutdatum: <br/>
-          {d.format("DD-MM-YYYY")} <br/>
-          {d.format("HH:ss")}</p>
+          {d.format("DD-MM-YYYY")}</p>
 
         </div>
       </div>
