@@ -1,6 +1,4 @@
-1. npm install -g yarn
-2. npm install
-3. npm start
+
 
 
 # Getting Started with Create React App
