@@ -41,25 +41,34 @@ const AddAuction = () => {
     }
     
     //Writes up the "form"
-    return ( <div className="new-auction">
+    return ( 
+    <div className='container backgroundGradient'>
+        <div className="new-auction card">
+        <h2 className='h1-h'>Skapa ny auktion</h2>
+            <form className="auction-form" name="auction-form" onSubmit={submitHandler}>
+            
+            <label htmlFor="titel" className='label'>Titel</label>
+            <input id="titel" classname="input-field" type="text" ref={title} />
+            
+            <label htmlFor="startDate" className='label'>Startdatum</label>
+            <input id="startDate" classname="input-field" type="date" ref={startdate} />
+            
+            <label htmlFor="endDate" className='label'>Slutdatum</label>
+            <input id="endDate" classname="input-field" type="date" ref={enddate} />
+            
+            <label htmlFor="price" className='label'>Öppningsbud</label>
+            <input id="price" classname="input-field" type="text" pattern="[0-9]" ref={openingPrice} onChange={numberValidation}/>
 
-    <form className="auction-form" name="auction-form" onSubmit={submitHandler}>
-    <label htmlFor="titel">Titel</label>
-    <input id="titel" classname="input-field" type="text" ref={title} />
-    <label htmlFor="description">Beskrivning</label>
-    <textarea id="description" classname="input-field" type="" ref={description} />
-    <label htmlFor="startDate">Startdatum</label>
-    <input id="startDate" classname="input-field" type="date" ref={startdate} />
-    <label htmlFor="endDate">Slutdatum</label>
-    <input id="endDate" classname="input-field" type="date" ref={enddate} />
-    <label htmlFor="price">Öppningsbud</label>
-    <input id="price" classname="input-field" type="text" pattern="[0-9]" ref={openingPrice} onChange={numberValidation}/>
-    <label htmlFor="createdBy">Ägare</label>
-    <input id="createdBy" classname="input-field" type="text" ref={owner} />
-    <p>{err}</p>
-    <Link to="/" className="btn grey" onClick={() => {addAuction();}}>Ladda upp</Link>
-    </form>
-    </div> );
+            <label htmlFor="description" className='label'>Beskrivning</label>
+            <textarea id="description" classname="input-field-text" type="" ref={description} />
+            
+            <label htmlFor="createdBy" className='label'className='label'>Ägare</label>
+            <input id="createdBy" classname="input-field" type="text" ref={owner} />
+            <p>{err}</p>
+            <Link to="/" className="btn submit" onClick={() => {addAuction();}}>Ladda upp</Link>
+            
+            </form>
+    </div></div> );
 }
  
 export default AddAuction;

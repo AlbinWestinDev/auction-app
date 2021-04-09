@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Login.css';
+import '../style/css/style.css';
 import { Link, useHistory } from 'react-router-dom';
 import { auth } from '../firebase';
 
@@ -28,7 +28,8 @@ function Login() {
   };
 
   return (
-    <div className="login">
+    <div className="container backgroundGradient login">
+      <div className='card'>
       <br />
       <br />
       <div className="login__container">
@@ -50,19 +51,20 @@ function Login() {
           <button
             onClick={loginuser}
             type="submit"
-            class="btn btn-outline-primary"
+            class="btn-login"
           >
             Logga in
           </button>
         </form>
         <br />
-        <button onClick={signupuser} class="btn btn-outline-primary">
+        <button onClick={signupuser} class="btn-login">
           Skapa konto
         </button>
         <p>
           Genom att skapa ett konto godkänner du användarvillkor och
           integritetspolicy
         </p>
+      </div>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import {
   getUnexpiredAuctions,
 } from '../../DataAPIManagerTool/NackowskisService';
 import AuctionListItem from './AuctionListItem';
-import './AuctionListStyle.css';
+import '../../style/css/style.css'
 
 const AuctionList = () => {
   const [auctions, setAuctions] = useState([]);
@@ -20,7 +20,7 @@ const AuctionList = () => {
   // console.log(auctions);
 
   return (
-    <div className="container">
+    <div className="container backgroundGradient">
       <div className="a-list-grid">
         {auctions.map((auction) => (
           <AuctionListItem key={auction.AuktionID} auction={auction} />

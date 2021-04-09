@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import './App.css';
+import './style/css/style.css';
 import Header from './components/Header';
 import Login from './components/Login';
 import Home from './components/Home';

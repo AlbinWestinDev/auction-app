@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link, useHistory } from 'react-router-dom';
-import './Header.css';
+// import './Header.css';
+import '../style/css/style.css';
 import logo from '../style/img/logo8.png';
 import searchicon from '../style/img/search.png';
 

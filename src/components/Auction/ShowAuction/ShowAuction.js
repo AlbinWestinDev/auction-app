@@ -117,18 +117,19 @@ export default function ShowAuction(props) {
   return !auctionData ? (
     <p>Datan laddas</p>
   ) : (
-    <div className={classes.root}>
+    <div className='container backgroundGradient sized'>
+    <div className={classes.root} >
       <Container className={classes.container}>
-        <Grid container spacing={3}>
+        <Grid container spacing={3} >
           <Grid item lg={7}>
-            <Paper className={classes.paper} elevation={8}>
+            <Paper className={classes.paper} elevation={8}  >
               <Grid container>
                 <Grid item lg={12}>
                   <Typography align="left" variant="h5">
                     {auctionData.Titel}
                   </Typography>
                 </Grid>
-                <Grid item lg={12}>
+                <Grid item lg={12} >
                   <br />
                   <Typography variant="h6">Objektbeskrivning</Typography>
                   <Typography align="left" variant="body2">
@@ -309,6 +310,6 @@ export default function ShowAuction(props) {
           </Grid>
         </Grid>
       </Container>
-    </div>
+    </div></div>
   );
 }

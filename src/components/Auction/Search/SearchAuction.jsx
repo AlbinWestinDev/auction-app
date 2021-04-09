@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { getAll } from '../../../DataAPIManagerTool/NackowskisService';
-import '../AuctionListStyle.css';
+import '../../../style/css/style.css';
 import AuctionListItem from '../AuctionListItem';
 
 const SearchAuction = () => {
@@ -28,7 +28,7 @@ const SearchAuction = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container backgroundGradient">
         <div className="a-list-grid">
           {auctions?.map((auction) => (
             <AuctionListItem key={auction.AuktionID} auction={auction} />

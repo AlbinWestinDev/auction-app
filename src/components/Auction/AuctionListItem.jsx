@@ -1,6 +1,6 @@
 //Malin
 import React from 'react';
-import './AuctionListStyle.css';
+import '../../style/css/style.css';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 
@@ -18,9 +18,9 @@ const AuctionItem = ({ auction }) => {
     }}>
 
     <div className="a-comp-holder">
-      <div className="a-comp-card">
+      <div className="a-comp-card card">
         <div className="a-card-container">
-          <h4>{auction.Titel}</h4>
+          <h3 className='headerFont'>{auction.Titel}</h3>
 
           <p>Utropspris: {auction.Utropspris} kr</p>
           

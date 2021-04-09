@@ -1,5 +1,4 @@
-.header {
-  /* background-color: #ce6c47; */
+/* .header {
   background-color: RGBA(69, 69, 69, 0.8);
   backdrop-filter: blur(5px);
   -webkit-box-shadow: -1px 9px 12px -10px rgba(0, 0, 0, 0.68);
@@ -15,7 +14,7 @@
 }
 
 .header_logo {
-  height: 80px;
+  height: 100%;
   margin: 0 20px;
   position: absolute;
   left: 400px;
@@ -29,14 +28,15 @@
 }
 
 .header_searchInput {
-  padding: 20px;
-  border: none;
-  width: 40px;
-  border-radius: 50px;
   -webkit-box-shadow: inset 5px 5px 6px -3px rgba(0, 0, 0, 0.64);
+  background: RGBA(204, 203, 201, 0.3);
+  border-radius: 50px;
+  border: none;
   box-shadow: inset 5px 5px 6px -3px rgba(0, 0, 0, 0.64);
-  background: #cccbc9;
+  color: lightgrey;
+  padding: 20px;
   transition: all 500ms;
+  width: 40px;
 }
 
 .header_searchInput:focus {
@@ -45,9 +45,8 @@
 }
 
 .headerSearchIcon {
-  color: orange;
-  padding: 5px;
   height: 40px;
+  padding: 5px;
 }
 .header_link {
   color: #c3c8bc;
@@ -63,7 +62,6 @@
 .header_option {
   display: flex;
   flex-direction: column;
-
   margin-left: 80px;
   margin-right: 50px;
 }
@@ -76,6 +74,6 @@
 }
 .header-nav {
   display: flex;
-  text-align: left;
   justify-content: space-evenly;
-}
+  text-align: left;
+} */

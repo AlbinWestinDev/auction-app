@@ -1,9 +1,9 @@
-.login {
+/* .login {
+  align-items: center;
   background-color: white;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 100vh;
 }
 .login__logo {
   width: 250px;
@@ -21,11 +21,11 @@
 .login__signInButton,
 .login__registerButton {
   background-color: wheat;
-  border: 1px solid;
-  margin-top: 10px;
-  height: 30px;
   border-radius: 2px;
+  border: 1px solid;
   color: #111;
+  height: 30px;
+  margin-top: 10px;
 }
 .login__container p {
   margin-top: 15px;
@@ -43,4 +43,4 @@
   margin-bottom: 10px;
   background-color: white;
   width: 90%;
-}
+} */
